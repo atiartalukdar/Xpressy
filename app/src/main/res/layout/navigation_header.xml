@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:background="@drawable/header_bd">
+
+    <LinearLayout
+        android:id="@+id/parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        tools:ignore="RtlHardcoded">
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="15dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/user_default"
+            app:civ_border_color="#FFFFFFFF"
+            app:civ_border_width="2dp" />
+
+        <TextView
+            android:id="@+id/txt_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/online"
+            android:layout_gravity="center"
+            android:lines="1"
+            android:padding="2dp"
+            android:text=""
+            tools:ignore="HardcodedText,ObsoleteLayoutParam" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+
+        android:layout_marginEnd="@dimen/margin_20"
+        android:layout_marginRight="@dimen/margin_20"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:ignore="RtlHardcoded">
+
+
+        <TextView
+            android:id="@+id/is_online"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_above="@+id/online"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/margin_20"
+            android:lines="1"
+            android:padding="2dp"
+            android:text="@string/online"
+            android:visibility="gone"
+            tools:ignore="HardcodedText,ObsoleteLayoutParam" />
+
+        <android.support.v7.widget.SwitchCompat
+
+
+            android:id="@+id/online"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal"
+
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:visibility="gone"
+            app:switchMinWidth="50dp"
+            tools:ignore="ObsoleteLayoutParam,RtlHardcoded" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/parent"
+        android:layout_marginRight="@dimen/margin_10"
+        android:text="V 1.8" />
+</RelativeLayout>

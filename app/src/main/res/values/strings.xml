@@ -1,0 +1,151 @@
+<resources>
+    <string name="app_name">xpressy</string>
+
+
+    <!--Do not change this for localization -->
+    <string name="google_android_map_api_key">AIzaSyAl_NO1hTfMx08zljGzB8uZawWbdnDpfkk</string>
+    <string name="mapboxkey">pk.eyJ1IjoiaWNhbnN0dWRpb3oiLCJhIjoiY2oyMXQ3dGRpMDAwdDJ3bXpmZHRkdTBtNyJ9.PxslIcrVRj_gVgiv-Y-jog</string>
+
+
+    <string name="mobile_number">Mobile Number</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Sign In</string>
+    <string name="drop_up_location">Enter your destination</string>
+    <string name="pick_up_location">Enter your pickup</string>
+    <string name="update">Update</string>
+    <string name="direction_request">Direction Requesting........</string>
+    <string name="network">Network not available</string>
+    <string name="home">Home</string>
+    <string name="try_again">try again</string>
+    <string name="request_ride">Request Ride</string>
+    <string name="merchant_privacy">https://www.example.com/privacy</string>
+    <string name="merchant_user_agreement">https://www.example.com/legal</string>
+    <string name="merchant_name">xpressy App</string>
+    <string name="paypal_payment_currency">USD</string>
+    <string name="cash_on_hand">Request Cash On Hand to driver</string>
+    <string name="change_password">CHANGE PASSWORD</string>
+    <string name="contact_admin">There is some problem. please contact your administrator.</string>
+    <string name="success_login">Welcome to </string>
+    <string name="profile">Profile</string>
+    <string name="taxi">XPRESSY</string>
+    <string name="ok">OK</string>
+    <string name="payment_update">Payment Updated</string>
+    <string name="ride_request_completed">ride request completed</string>
+    <string name="ride_request_cancelled">ride request cancelled</string>
+    <string name="accepted_request">Accepted Request</string>
+    <string name="pending_request">Pending Request</string>
+    <string name="cancelled_request">Cancelled Request</string>
+    <string name="completed_request">Completed Request</string>
+    <string name="couldnt_get_location">couldn\'t get your location</string>
+    <string name="online">you are online</string>
+    <string name="error_occurred">error occurred</string>
+    <string name="fiels_is_required">field is required</string>
+    <string name="email_invalid">email is invalid</string>
+    <string name="mobile_invalid">mobile number is invalid</string>
+    <string name="password_length">minimum password length is 6 characters</string>
+    <string name="password_nomatch">password didn\'t match</string>
+    <string name="passenger_info">Passenger Information</string>
+    <string name="payment_hbeen_cancelled">Payment has been cancelled</string>
+    <string name="complete_ride">COMPLETE RIDE</string>
+    <string name="cancel_ride">CANCEL RIDE</string>
+    <string name="track_ride">Track Ride</string>
+
+    <string name="profile_updated">Profile Updated</string>
+    <string name="profile_uploaded">profile uploaded</string>
+    <string name="change">CHANGE</string>
+    <string name="old_pws_is_required">old password is required</string>
+    <string name="relogin">Re-login and try again</string>
+    <string name="newpwd_required">new password is required</string>
+    <string name="password_updated">password Updated</string>
+    <string name="invalid_location">invalid location</string>
+    <string name="select_driver">tap driver info</string>
+    <string name="invalid_fare">invalid fare</string>
+    <string name="allow_permission">Allow Permission</string>
+    <string name="invalid_distance">invalid distance</string>
+    <string name="invalid_pickupaddress">invalid pickup address</string>
+    <string name="invalid_dropaddress">invalid drop address</string>
+    <string name="invalid_pickuplocation">invalid pickup location</string>
+    <string name="invalid_droplocation">invalid drop location</string>
+    <string name="ride_has_been_requested">Ride has been requested</string>
+    <string name="name">Name*</string>
+    <string name="cancel">CANCEL</string>
+    <string name="confirm">CONFIRM</string>
+    <string name="error_payment">Error while updating  payment</string>
+    <string name="server_not_respond">server didn\'t response</string>
+    <string name="payment_method">Choose Payment method</string>
+    <string name="want_to_cancel">Do you want to cancel your accepted ride?</string>
+    <string name="want_to_accept">Do you want to complete your accepted ride?</string>
+    <string name="ride_request_cancellation">RIDE UPDATE</string>
+    <string name="FROM">FROM</string>
+    <string name="TIME">TIME</string>
+    <string name="DRIVERNAME">DRIVER NAME</string>
+    <string name="TO">TO</string>
+    <string name="basefare">"Base Fare       "</string>
+    <string name="pickup_location">"Pickup Location       "</string>
+    <string name="drop_location">"Drop Location       "</string>
+    <string name="namee">"Name       "</string>
+    <string name="drivername">"Driver Number       "</string>
+    <string name="payment_status">"Payment Status       "</string>
+    <string name="mobile_numberr">"Mobile Number       "</string>
+    <string name="CUSTOMERNAME">CUSTOMER NAME</string>
+    <string name="nodata_found">No Data Found</string>
+    <string name="vehicle_info">VEHICLE INFO</string>
+    <string name="ratekm">RATE / KM</string>
+    <string name="REQUEST_RIDE">REQUEST RIDE</string>
+    <string name="Login">Login</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="create_ac">Create an Account</string>
+    <string name="password_reset">Password Reset</string>
+    <string name="pwd_reset_instruction">Enter your registered email address ,We will send you an email to reset your password</string>
+    <string name="register_hint">Registered Email</string>
+    <string name="reset_password">Reset password</string>
+    <string name="new_pwd">new password</string>
+    <string name="INVALID_DISTANCE">INVALID DISTANCE</string>
+    <string name="make_payment">Make Payment</string>
+    <string name="taxigo">XpressyGO</string>
+    <string name="date">DATE</string>
+    <string name="fare">"Fare       "</string>
+    <string name="ride_request">Ride Request</string>
+    <string name="vehicle_name">"Vehicle Name       "</string>
+    <string name="unpaid">Unpaid</string>
+    <string name="fare_calculating">Calculating Fare..........</string>
+    <string name="select_pickup_location">select pickup location</string>
+    <string name="select_drop_location">select drop location</string>
+    <string name="Track_Driver">Track Driver</string>
+    <string name="Track_Ride">Track Ride</string>
+    <string name="driver">Driver</string>
+    <string name="logout">Log out</string>
+    <string name="please_select_service_type">Please Select Service Type</string>
+    <string name="ride_service">Ride</string>
+    <string name="delivery_service">Delivery</string>
+    <string name="please_select_vehicle_type">Please Select Vehicle Type</string>
+    <string name="are_you_satisfied_with_your_ride">Are you satisfied with your ride ?</string>
+    <string name="todo">TODO</string>
+    <string name="write_your_feedback">write your feedback</string>
+    <string name="write_your_complaints">write your complaints</string>
+    <string name="skip">Skip</string>
+    <string name="submit">Submit</string>
+    <string name="feedback">Feedback</string>
+    <string name="complaints">Complaints</string>
+    <string name="back">Back</string>
+
+
+    <string-array name="payment_mode">
+        <item>Cash on hand [to driver]</item>
+        <item>pay via Paypal</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="you_wants_any_third_person_to_track_this_delivery_as_well">you wants any third person to track this delivery as well</string>
+    <string name="email_address_mobile_number">Email address / Mobile number</string>
+
+    <string name="tag_send">send</string>
+    <string name="tag_verify">verify</string>
+    <string name="forget_pass">Forget Password !</string>
+
+
+</resources>

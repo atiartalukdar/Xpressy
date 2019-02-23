@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
+    android:background="@drawable/bgtex"
+    tools:context=".acitivities.LoginActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bgtex"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/bgtex"
+            android:layout_weight="1">
+
+            <!-- logo -->
+            <ImageView
+                android:src="@drawable/ic_icon_wh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"/>
+
+            <!-- Login / Signup with -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:text="Login / Signup with"
+            />
+
+            <!-- Mobile Number-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/buttonstyle"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:onClick="btnMobile"
+                >
+                <TextView
+                    android:onClick="btnMobile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttonstyle"
+                    android:drawablePadding="5dp"
+                    android:drawableLeft="@drawable/ic_dialpad_black_24dp"
+                    android:textColor="@color/white"
+                    android:text="Mobile Number"/>
+
+            </LinearLayout>
+
+            <!-- or -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:background="@android:color/darker_gray"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/circle"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="OR"
+                    />
+            </FrameLayout>
+
+            <!-- facebook/google -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Facebook -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttonstyle1"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="3dp"
+                    android:gravity="center"
+                    >
+                    <TextView
+                        android:id="@+id/btn_facebook"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="5dp"
+                        android:background="@null"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:drawableLeft="@drawable/facebook_36"
+                        android:text="Facebook"/>
+
+                </LinearLayout>
+
+                <!-- Google-->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttonstyle1"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="3dp"
+                    android:gravity="center"
+                    >
+                    <TextView
+                        android:id="@+id/btn_google"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="5dp"
+                        android:background="@null"
+                        android:drawableLeft="@drawable/google_36"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="Google"/>
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+            <!-- Term Of Use -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:text="By Login you agree to our Terms of Use"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

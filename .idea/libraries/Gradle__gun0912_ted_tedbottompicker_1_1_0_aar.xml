@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: gun0912.ted:tedbottompicker:1.1.0@aar">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/tedbottompicker-1.1.0.aar/e42c21ac7ab00ff732445faded4a2949/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/tedbottompicker-1.1.0.aar/e42c21ac7ab00ff732445faded4a2949/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/tedbottompicker-1.1.0.aar/e42c21ac7ab00ff732445faded4a2949/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/gun0912.ted/tedbottompicker/1.1.0/35df8e6534c1cb7d122b58bd9c9e0ac56796ea73/tedbottompicker-1.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

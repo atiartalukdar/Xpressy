@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parentlayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".acitivities.VerificationActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:tint="@color/overlay"
+            android:tintMode="multiply"
+            android:id="@+id/verifiedsign"
+            app:srcCompat="@drawable/ic_perm_phone_msg_black_24dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="35dp"
+            android:layout_margin="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="What's your phone number?"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:id="@+id/infoBar"
+                android:layout_marginBottom="10dp"
+                android:textSize="16sp"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/countryCode"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/circle_edit_text"
+                    android:textSize="36sp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:text="+254"
+                    android:enabled="false"
+                    android:inputType="phone" />
+
+                <EditText
+                    android:id="@+id/numbered"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/circle_edit_text"
+                    android:textSize="36sp"
+                    android:maxLength="9"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:hint="XXX XXXXXX"
+                    android:gravity="center"
+                    android:inputType="phone" />
+
+
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/verificationed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="25dp"
+                android:background="@drawable/rect_text_edit"
+                android:hint="Enter Code"
+                android:inputType="number"
+                android:padding="10dp"
+                android:visibility="gone" />
+
+
+            <Button
+                android:id="@+id/sendverifybt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/buttonstyle"
+                android:text="Send Confirmation Code"
+                android:tag="@string/tag_send"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/warningId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:padding="10dp"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="By tapping \u0022SEND CONFIRMATION CODE\u0022 above, we will send you an SMS to confirm your phone number."
+
+                />
+
+            <TextView
+                android:id="@+id/timertv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="25sp"
+                android:clickable="true"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

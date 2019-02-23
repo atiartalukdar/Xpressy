@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6E60CC</color>
+    <color name="hint">#2196F3</color>
+    <color name="text_color">#2196F3</color>
+    <color name="yellow">#2196F3</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="green">#439f2a</color>
+    <color name="red">#ea110e</color>
+    <color name="current_lolcation">#2CB0F3</color>
+    <color name="liner">#DDE4E8</color>
+    <color name="divider">#5c5858</color>
+    <color name="transparent">#A8000000</color>
+    <color name="overlay">#51657b</color>
+
+    <color name="colorAccent">#FFCD00</color>
+    <color name="logoColor1">#E43F3F</color>
+    <color name="logoColor">#2196F3</color>
+    <color name="overlay_trans">#9051657b</color>
+    <color name="offwhile">#F1E9E3</color>
+</resources>

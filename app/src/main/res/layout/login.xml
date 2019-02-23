@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".acitivities.LoginActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="@dimen/login_width"
+        android:layout_height="@dimen/login_height"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/ic_icon" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/imageView"
+        android:layout_marginTop="20dp">
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:scrollbarThumbVertical="@android:color/transparent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/hint">
+
+                        <EditText
+                            android:id="@+id/input_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/fourty_five"
+                            android:layout_margin="@dimen/five"
+                            android:background="@drawable/rounded_view"
+                            android:hint="@string/email"
+                            android:inputType="textEmailAddress"
+                            android:paddingLeft="10dp"
+                            android:paddingStart="10dp"
+                            android:textColor="@color/hint"
+                            android:textColorHint="@color/hint"
+                            android:textCursorDrawable="@drawable/cursor" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/hint"
+                        app:counterEnabled="false"
+                        app:counterMaxLength="6"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="@color/yellow">
+
+                        <EditText
+                            android:id="@+id/input_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/fourty_five"
+                            android:layout_margin="@dimen/five"
+                            android:background="@drawable/rounded_view"
+                            android:hint="@string/password"
+                            android:inputType="textPassword"
+                            android:paddingLeft="10dp"
+                            android:paddingStart="10dp"
+                            android:textColor="@color/hint"
+                            android:textColorHint="@color/hint"
+                            android:textCursorDrawable="@drawable/cursor" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/login"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/ronded_button1"
+                        android:text="@string/Login"
+                        android:textColor="@color/text_color" />
+
+                    <TextView
+                        android:id="@+id/txt_forgotpassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="@dimen/margin_10"
+                        android:padding="@dimen/margin_10"
+                        android:text="@string/forgot_password"
+                        android:textColor="#323232"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <RelativeLayout
+                        android:id="@+id/relative_register"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/fourty_five"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/rounded_button"
+                            android:text="@string/create_ac"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/txt_createaccount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="@string/create_ac"
+                            android:textColor="@color/black" />
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+        </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <TextView
+        android:id="@+id/as"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:text=""
+        android:textColor="@color/black" />
+</RelativeLayout>

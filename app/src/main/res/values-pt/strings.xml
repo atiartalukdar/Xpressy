@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+
+    <string name="app_name">"TaxiCustomer"</string>
+
+    <!-- Do not change this for localization -->
+
+
+    <string name="google_android_map_api_key">AIzaSyAl_NO1hTfMx08zljGzB8uZawWbdnDpfkk</string>
+    <string name="mapboxkey">pk.eyJ1IjoiaWNhbnN0dWRpb3oiLCJhIjoiY2oyMXQ3dGRpMDAwdDJ3bXpmZHRkdTBtNyJ9.PxslIcrVRj_gVgiv-Y-jog</string>
+
+
+    <string name="mobile_number">"Número de celular"</string>
+
+    <string name="email">"O email"</string>
+
+    <string name="password">"Senha"</string>
+
+    <string name="confirm_password">"Confirme a Senha"</string>
+
+    <string name="sign_up">"Inscrever-se"</string>
+
+    <string name="sign_in">"Assinar em"</string>
+
+    <string name="drop_up_location">"Enter your destination"</string>
+
+    <string name="pick_up_location">"Localização da coleta"</string>
+
+    <string name="update">"Atualizar"</string>
+
+    <string name="direction_request">"Direção solicitando ........"</string>
+
+    <string name="network">"Rede não disponível"</string>
+
+    <string name="home">"Casa"</string>
+
+    <string name="try_again">"tente novamente"</string>
+
+    <string name="request_ride">"Solicitar carona"</string>
+
+    <string name="merchant_privacy">"https://www.example.com/privacy"</string>
+
+    <string name="merchant_user_agreement">"https://www.example.com/legal"</string>
+
+    <string name="merchant_name">"App Taxi"</string>
+
+    <string name="paypal_payment_currency">"USD"</string>
+
+    <string name="cash_on_hand">"Solicite o dinheiro em mãos para o motorista"</string>
+
+    <string name="change_password">"MUDAR SENHA"</string>
+
+    <string name="contact_admin">"Existe algum problema. entre em contato com seu administrador."</string>
+
+    <string name="success_login">"Bem-vindo ao"</string>
+
+    <string name="profile">"Perfil"</string>
+
+    <string name="taxi">"TÁXI"</string>
+
+    <string name="ok">"Está bem"</string>
+
+    <string name="payment_update">"Pagamento atualizado"</string>
+
+    <string name="ride_request_completed">"pedido de carona concluído"</string>
+
+    <string name="ride_request_cancelled">"pedido de carona cancelado"</string>
+
+    <string name="accepted_request">"Solicitação aceita"</string>
+
+    <string name="pending_request">"Pedido pendente"</string>
+
+    <string name="cancelled_request">"Pedido cancelado"</string>
+
+    <string name="completed_request">"Pedido preenchido"</string>
+
+    <string name="couldnt_get_location">"não conseguiu a sua localização"</string>
+
+    <string name="online">"você está online"</string>
+
+    <string name="error_occurred">"ocorreu um erro"</string>
+
+    <string name="fiels_is_required">"campo é obrigatório"</string>
+
+    <string name="email_invalid">"Email inválido"</string>
+
+    <string name="mobile_invalid">"número de celular é inválido"</string>
+
+    <string name="password_length">"o tamanho mínimo da senha é de 6 caracteres"</string>
+
+    <string name="password_nomatch">"senha não correspondia"</string>
+
+    <string name="passenger_info">"Informação ao Passageiro"</string>
+
+    <string name="payment_hbeen_cancelled">"O pagamento foi cancelado"</string>
+
+    <string name="complete_ride">"PASSEIO COMPLETO"</string>
+
+    <string name="cancel_ride">"CANCELAR PASSEIO"</string>
+
+    <string name="track_ride">"Passeio de Trilha"</string>
+
+    <string name="profile_updated">"Perfil atualizado"</string>
+
+    <string name="profile_uploaded">"perfil carregado"</string>
+
+    <string name="change">"MUDANÇA"</string>
+
+    <string name="old_pws_is_required">"senha antiga é necessária"</string>
+
+    <string name="relogin">"Faça o login novamente e tente novamente"</string>
+
+    <string name="newpwd_required">"nova senha é necessária"</string>
+
+    <string name="password_updated">"senha atualizada"</string>
+
+    <string name="invalid_location">"localização inválida"</string>
+
+    <string name="select_driver">"toque informações sobre o motorista"</string>
+
+    <string name="invalid_fare">"tarifa inválida"</string>
+
+    <string name="allow_permission">"Permitir permissão"</string>
+
+    <string name="invalid_distance">"distância inválida"</string>
+
+    <string name="invalid_pickupaddress">"endereço de retirada inválido"</string>
+
+    <string name="invalid_dropaddress">"endereço de descida inválido"</string>
+
+    <string name="invalid_pickuplocation">"local de retirada inválido"</string>
+
+    <string name="invalid_droplocation">"local de queda inválido"</string>
+
+    <string name="ride_has_been_requested">"O passeio foi solicitado"</string>
+
+    <string name="name">"Nome"</string>
+
+    <string name="cancel">"CANCELAR"</string>
+
+    <string name="confirm">"CONFIRME"</string>
+
+    <string name="error_payment">"Erro ao atualizar o pagamento"</string>
+
+    <string name="server_not_respond">"servidor não respondeu"</string>
+
+    <string name="payment_method">"Escolha o método de pagamento"</string>
+
+    <string name="want_to_cancel">"Você quer cancelar seu passeio aceito?"</string>
+
+    <string name="want_to_accept">"Você quer completar seu passeio aceito?"</string>
+
+    <string name="ride_request_cancellation">"ATUALIZAÇÃO DE PASSEIO"</string>
+
+    <string name="FROM">"A PARTIR DE"</string>
+
+    <string name="TIME">"TEMPO"</string>
+
+    <string name="DRIVERNAME">"NOME DO MOTORISTA"</string>
+
+    <string name="TO">"PARA"</string>
+
+    <string name="basefare">"Tarifa base"</string>
+
+    <string name="pickup_location">"Local de retirada"</string>
+
+    <string name="drop_location">"Drop Location"</string>
+
+    <string name="namee">"Nome"</string>
+
+    <string name="drivername">"Número do Driver"</string>
+
+    <string name="payment_status">"Status do pagamento"</string>
+
+    <string name="mobile_numberr">"Número de celular"</string>
+
+    <string name="CUSTOMERNAME">"NOME DO CLIENTE"</string>
+
+    <string name="nodata_found">"Nenhum dado encontrado"</string>
+
+    <string name="vehicle_info">"INFORMAÇÃO DO VEÍCULO"</string>
+
+    <string name="ratekm">"TAXA / KM"</string>
+
+    <string name="REQUEST_RIDE">"PEDIDO DE SOLICITAÇÃO"</string>
+
+    <string name="Login">"Entrar"</string>
+
+    <string name="forgot_password">"Esqueceu a senha?"</string>
+
+    <string name="create_ac">"Crie a sua conta aqui"</string>
+
+    <string name="password_reset">"Resetar a senha"</string>
+
+    <string name="pwd_reset_instruction">"Digite seu endereço de e-mail cadastrado, nós lhe enviaremos um e-mail para redefinir sua senha"</string>
+
+    <string name="register_hint">"Email registrado"</string>
+
+    <string name="reset_password">"Redefinir senha"</string>
+
+    <string name="new_pwd">"Nova senha"</string>
+
+    <string name="INVALID_DISTANCE">"DISTÂNCIA INVÁLIDA"</string>
+
+    <string name="make_payment">"Faça o pagamento"</string>
+
+    <string name="taxigo">"Taxi"</string>
+
+    <string name="date">"ENCONTRO"</string>
+
+    <string name="fare">"Tarifa"</string>
+
+    <string name="ride_request">"Solicitação de viagem"</string>
+
+    <string name="vehicle_name">"Nome do Veículo"</string>
+
+    <string name="unpaid">"Não remunerado"</string>
+
+    <string name="fare_calculating">"Calcular tarifa .........."</string>
+
+    <string name="select_pickup_location">"selecione o local de retirada"</string>
+
+    <string name="select_drop_location">"selecione o local da queda"</string>
+
+    <string name="Track_Driver">"Motorista da trilha"</string>
+
+    <string name="Track_Ride">"Passeio de Trilha"</string>
+
+    <string name="driver">"Motorista"</string>
+    <string name="logout">sair</string>
+
+</resources>

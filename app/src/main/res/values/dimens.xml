@@ -1,0 +1,22 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="height">250dp</dimen>
+    <dimen name="login_height">100dp</dimen>
+    <dimen name="login_width">200dp</dimen>
+    <dimen name="fourty_five">45dp</dimen>
+    <dimen name="five">5dp</dimen>
+    <dimen name="arrow">35dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="detail_bottom_margin">10dp</dimen>
+    <dimen name="one_twenty">120dp</dimen>
+    <dimen name="margin_10">10dp</dimen>
+    <dimen name="margin_5">5dp</dimen>
+    <dimen name="margin_15">15dp</dimen>
+    <dimen name="margin_220">220dp</dimen>
+    <dimen name="margin_300">300dp</dimen>
+    <dimen name="margin_m10">10dp</dimen>
+    <dimen name="margin_m5">-5dp</dimen>
+    <dimen name="margin_3">3dp</dimen>
+
+
+</resources>

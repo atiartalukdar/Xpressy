@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlVehicle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="0dip"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/chosenVehicleCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        android:layout_margin="@dimen/margin_10"
+        app:cardElevation="2dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           android:paddingTop="@dimen/margin_20"
+            android:orientation="vertical">
+
+            <EditText
+                android:layout_margin="@dimen/margin_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_10"
+                android:id="@+id/email_mobile_thirdpartyPopup"
+                android:inputType="textEmailAddress"
+                android:hint="@string/email_address_mobile_number" />
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
+
+                <!--<android.support.design.widget.TabLayout-->
+                    <!--android:id="@+id/tabVehicle"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:background="@android:color/white"-->
+                    <!--android:focusedByDefault="false"-->
+                    <!--android:visibility="visible"-->
+                    <!--app:tabIndicatorHeight="0dp"-->
+                    <!--app:tabMode="fixed"-->
+                    <!--app:tabSelectedTextColor="@color/colorPrimary" />-->
+
+               <TextView
+                 android:id="@+id/submitButton_thirdpopup"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:text="@string/submit"
+                   android:layout_marginTop="@dimen/margin_10"
+                 android:layout_gravity="center"
+                 android:gravity="center"
+                   android:background="@color/yellow"
+                 android:padding="@dimen/margin_10"
+                   android:textSize="18sp"
+                 android:textColor="@color/white"/>
+            <!--</LinearLayout>-->
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

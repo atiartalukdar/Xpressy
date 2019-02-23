@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <resources>
+
+    <string name="app_name">"TaxiCustomer"</string>
+
+    <!-- Do not change this for localization -->
+
+
+    <string name="google_android_map_api_key">AIzaSyAl_NO1hTfMx08zljGzB8uZawWbdnDpfkk</string>
+    <string name="mapboxkey">pk.eyJ1IjoiaWNhbnN0dWRpb3oiLCJhIjoiY2oyMXQ3dGRpMDAwdDJ3bXpmZHRkdTBtNyJ9.PxslIcrVRj_gVgiv-Y-jog</string>
+
+
+    <string name="mobile_number">"رقم الهاتف المحمول"</string>
+
+    <string name="email">"البريد الإلكتروني"</string>
+
+    <string name="password">"كلمه السر"</string>
+
+    <string name="confirm_password">"تأكيد كلمة المرور"</string>
+
+    <string name="sign_up">"سجل"</string>
+
+    <string name="sign_in">"تسجيل الدخول"</string>
+
+    <string name="drop_up_location">"إسقاط الموقع"</string>
+
+    <string name="pick_up_location">"اختر موقعا"</string>
+
+    <string name="update">"تحديث"</string>
+
+    <string name="direction_request">"طلب الاتجاه ........"</string>
+
+    <string name="network">"الشبكة غير متاحة"</string>
+
+    <string name="home">"الصفحة الرئيسية"</string>
+
+    <string name="try_again">"حاول ثانية"</string>
+
+    <string name="request_ride">"طلب ركوب"</string>
+
+    <string name="merchant_privacy">"https://www.example.com/privacy"</string>
+
+    <string name="merchant_user_agreement">"https://www.example.com/legal"</string>
+
+    <string name="merchant_name">"تاكسي التطبيق"</string>
+
+    <string name="paypal_payment_currency">"دولار أمريكي"</string>
+
+    <string name="cash_on_hand">"طلب النقد على اليد للسائق"</string>
+
+    <string name="change_password">"تغيير كلمة السر"</string>
+
+    <string name="contact_admin">"هناك بعض المشاكل. يرجى الاتصال بالمسؤول الخاص بك."</string>
+
+    <string name="success_login">"مرحبا بك في"</string>
+
+    <string name="profile">"الملف الشخصي"</string>
+
+    <string name="taxi">"سيارة اجره"</string>
+
+    <string name="ok">"حسنا"</string>
+
+    <string name="payment_update">"دفع تحديث"</string>
+
+    <string name="ride_request_completed">"اكتمل طلب الركوب"</string>
+
+    <string name="ride_request_cancelled">"طلب الركوب الملغى"</string>
+
+    <string name="accepted_request">"طلب مقبول"</string>
+
+    <string name="pending_request">"طلب معلق"</string>
+
+    <string name="cancelled_request">"طلب ملغي"</string>
+
+    <string name="completed_request">"طلب مكتمل"</string>
+
+    <string name="couldnt_get_location">"لا يمكن الحصول على موقعك"</string>
+
+    <string name="online">"أنت متصل"</string>
+
+    <string name="error_occurred">"حدث خطأ"</string>
+
+    <string name="fiels_is_required">"الحقل مطلوب"</string>
+
+    <string name="email_invalid">"البريد الإلكتروني غير صالح"</string>
+
+    <string name="mobile_invalid">"رقم الجوال غير صالح"</string>
+
+    <string name="password_length">"الحد الأدنى لطول كلمة المرور هو 6 أحرف"</string>
+
+    <string name="password_nomatch">"كلمة المرور غير متطابقة"</string>
+
+    <string name="passenger_info">"معلومات الركاب"</string>
+
+    <string name="payment_hbeen_cancelled">"تم إلغاء الدفع"</string>
+
+    <string name="complete_ride">"ركوب كامل"</string>
+
+    <string name="cancel_ride">"إلغاء ركوب"</string>
+
+    <string name="track_ride">"مسار الركوب"</string>
+
+    <string name="profile_updated">"تحديث الملف الشخصي"</string>
+
+    <string name="profile_uploaded">"الملف الشخصي تم الرفع"</string>
+
+    <string name="change">"يتغيرون"</string>
+
+    <string name="old_pws_is_required">"كلمة المرور القديمة مطلوبة"</string>
+
+    <string name="relogin">"أعد تسجيل الدخول وحاول مرة أخرى"</string>
+
+    <string name="newpwd_required">"كلمة المرور الجديدة مطلوبة"</string>
+
+    <string name="password_updated">"تم تحديث كلمة السر"</string>
+
+    <string name="invalid_location">"موقع غير صالح"</string>
+
+    <string name="select_driver">"انقر على معلومات السائق"</string>
+
+    <string name="invalid_fare">"أجرة غير صالحة"</string>
+
+    <string name="allow_permission">"اسمح بالسماح"</string>
+
+    <string name="invalid_distance">"المسافة غير صالحة"</string>
+
+    <string name="invalid_pickupaddress">"عنوان التقاط غير صالح"</string>
+
+    <string name="invalid_dropaddress">"عنوان إسقاط غير صالح"</string>
+
+    <string name="invalid_pickuplocation">"موقع التقاط غير صالح"</string>
+
+    <string name="invalid_droplocation">"موقع إسقاط غير صالح"</string>
+
+    <string name="ride_has_been_requested">"تم طلب الركوب"</string>
+
+    <string name="name">"اسم"</string>
+
+    <string name="cancel">"إلغاء"</string>
+
+    <string name="confirm">"تؤكد"</string>
+
+    <string name="error_payment">"خطأ أثناء تحديث الدفع"</string>
+
+    <string name="server_not_respond">"الخادم لم يستجب"</string>
+
+    <string name="payment_method">"اختر وسيلة الدفع"</string>
+
+    <string name="want_to_cancel">"هل تريد إلغاء رحلتك المقبولة؟"</string>
+
+    <string name="want_to_accept">"هل تريد إكمال رحلتك المقبولة؟"</string>
+
+    <string name="ride_request_cancellation">"ركوب التحديث"</string>
+
+    <string name="FROM">"من عند"</string>
+
+    <string name="TIME">"زمن"</string>
+
+    <string name="DRIVERNAME">"اسم السائق"</string>
+
+    <string name="TO">"إلى"</string>
+
+    <string name="basefare">"الاجرة الاساسية"</string>
+
+    <string name="pickup_location">"اختر موقعا"</string>
+
+    <string name="drop_location">"إسقاط الموقع"</string>
+
+    <string name="namee">"اسم"</string>
+
+    <string name="drivername">"رقم السائق"</string>
+
+    <string name="payment_status">"حالة السداد"</string>
+
+    <string name="mobile_numberr">"رقم الهاتف المحمول"</string>
+
+    <string name="CUSTOMERNAME">"اسم الزبون"</string>
+
+    <string name="nodata_found">"لاتوجد بيانات"</string>
+
+    <string name="vehicle_info">"معلومات عن السيارة"</string>
+
+    <string name="ratekm">"RATE / كم"</string>
+
+    <string name="REQUEST_RIDE">"طلب ركوب"</string>
+
+    <string name="Login">"تسجيل الدخول"</string>
+
+    <string name="forgot_password">"هل نسيت كلمة المرور؟"</string>
+
+    <string name="create_ac">"انشئ حساب"</string>
+
+    <string name="password_reset">"إعادة ضبط كلمة المرور"</string>
+
+    <string name="pwd_reset_instruction">"أدخل عنوان بريدك الإلكتروني المسجل ، وسنرسل لك رسالة بريد إلكتروني لإعادة تعيين كلمة المرور الخاصة بك"</string>
+
+    <string name="register_hint">"بريد الكتروني مسجل"</string>
+
+    <string name="reset_password">"إعادة تعيين كلمة المرور"</string>
+
+    <string name="new_pwd">"كلمة السر الجديدة"</string>
+
+    <string name="INVALID_DISTANCE">"المسافة غير الصالحة"</string>
+
+    <string name="make_payment">"قم بالدفع"</string>
+
+    <string name="taxigo">"Texi"</string>
+
+    <string name="date">"تاريخ"</string>
+
+    <string name="fare">"أجرة"</string>
+
+    <string name="ride_request">"طلب ركوب"</string>
+
+    <string name="vehicle_name">"اسم السيارة"</string>
+
+    <string name="unpaid">"غير مدفوع"</string>
+
+    <string name="fare_calculating">"حساب الأجرة .........."</string>
+
+    <string name="select_pickup_location">"حدد موقع التقاط"</string>
+
+    <string name="select_drop_location">"اختر الموقع"</string>
+
+    <string name="Track_Driver">"سائق المسار"</string>
+
+    <string name="Track_Ride">"مسار الركوب"</string>
+
+    <string name="driver">"سائق"</string>
+    <string name="logout">الخروج</string>
+
+</resources>

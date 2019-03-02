@@ -57,7 +57,9 @@ public class AcceptedRequestFragment extends Fragment {
 
         mContext = container.getContext();
         view = inflater.inflate(R.layout.accepted_request_fragment, container, false);
+
         bindView();
+
         if (CheckConnection.haveNetworkConnection(getActivity())) {
             getAcceptedRequest(userid, status, key);
         } else {

@@ -77,7 +77,7 @@
             android:resource="@color/hint" />
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="5e68320bc9e70b7b867c3bebb41b6837ad21582d" />
+            android:value="ac065fa4fd7ecf48b4fe2b391d25bcc416e85b2d" />
     </application>
 
 </manifest>

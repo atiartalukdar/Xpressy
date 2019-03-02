@@ -33,7 +33,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.roger.catloadinglibrary.CatLoadingView;
 import com.xpressy.rider.R;
+import com.xpressy.rider.Server.MyFirebaseMessagingService;
 import com.xpressy.rider.Server.Server;
 import com.xpressy.rider.acitivities.HomeActivity;
 import com.xpressy.rider.custom.CheckConnection;
@@ -62,6 +64,9 @@ public class RequestFragment extends FragmentManagePermission implements OnMapRe
     private final String TAG = "Atiar - RequestFrag ";
     private static final String MOTORBIKE = "Motorbike";
     private static final String TUKTUK = "tuktuk";
+
+    CatLoadingView mView;
+
     View view;
     AppCompatButton confirm, cancel;
     TextView pickup_location, drop_location;
@@ -343,7 +348,12 @@ public class RequestFragment extends FragmentManagePermission implements OnMapRe
                     if (response.has("status") && response.getString("status")
                             .equalsIgnoreCase("success")) {
                         Toast.makeText(getActivity(), getString(R.string.ride_has_been_requested), Toast.LENGTH_LONG).show();
-                        ((HomeActivity) getActivity()).changeFragment(new HomeFragment(), "Home");
+                       // ((HomeActivity) getActivity()).changeFragment(new HomeFragment(), "Home");
+                        MyFirebaseMessagingService myFirebaseMessagingService =  new MyFirebaseMessagingService();
+                        mView = new CatLoadingView();
+                        mView.setCanceledOnTouchOutside(false);
+                        mView.setText("Finding Driver...");
+                        mView.show(getActivity().getSupportFragmentManager(), "");
                     } else {
                         Toast.makeText(getActivity(), tryAgain, Toast.LENGTH_LONG).show();
                     }
@@ -429,7 +439,6 @@ public class RequestFragment extends FragmentManagePermission implements OnMapRe
 
     }
 
-
     public void distanceAlert(String message) {
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
@@ -456,6 +465,10 @@ public class RequestFragment extends FragmentManagePermission implements OnMapRe
         if (snackbar != null) {
             snackbar.dismiss();
 
+        }
+
+        if(mView != null){
+            mView.dismiss();
         }
     }
 }

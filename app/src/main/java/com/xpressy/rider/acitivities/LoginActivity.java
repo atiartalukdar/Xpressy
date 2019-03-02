@@ -34,10 +34,8 @@ public class LoginActivity extends ActivityManagePermission {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         AppUpdater appUpdater = new AppUpdater(this);
         appUpdater.start();
-
         setContentView(R.layout.login_new);
     }
 

@@ -5,14 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:fillViewport="true"
     android:fitsSystemWindows="true"
-    android:background="@drawable/bgtex"
     tools:context=".acitivities.LoginActivity">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bgtex"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         >
@@ -20,7 +18,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="@drawable/bgtex"
             android:layout_weight="1">
 
             <!-- logo -->

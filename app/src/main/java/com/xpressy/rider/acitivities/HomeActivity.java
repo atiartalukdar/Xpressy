@@ -70,6 +70,7 @@ import com.xpressy.rider.Server.Server;
 import com.xpressy.rider.custom.CheckConnection;
 import com.xpressy.rider.custom.GPSTracker;
 import com.xpressy.rider.custom.Utils;
+import com.xpressy.rider.fragement.AcceptedDetailFragment;
 import com.xpressy.rider.fragement.AcceptedRequestFragment;
 import com.xpressy.rider.fragement.HomeFragment;
 import com.xpressy.rider.fragement.MapView;
@@ -125,6 +126,7 @@ public class HomeActivity extends ActivityManagePermission
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
+        SessionManager sessionManager;
 
         mContext = this;
         AppUpdater appUpdater = new AppUpdater(this);
@@ -145,6 +147,36 @@ public class HomeActivity extends ActivityManagePermission
 
         BindView();
 
+
+        sessionManager = new SessionManager(getApplicationContext());
+        if (sessionManager.isLoggedIn(this)) {
+            Intent intent = getIntent();
+            if (intent != null && intent.hasExtra("action")) {
+                String action = intent.getStringExtra("action");
+                AcceptedRequestFragment commonRequestFragment = new AcceptedRequestFragment();
+                AcceptedDetailFragment acceptedRequestDetails = new AcceptedDetailFragment();
+                Bundle b = new Bundle();
+                b.putString("status", action);
+
+                Log.e("Atiar - ", "HomeActivity , status = "+action);
+
+                if (action.equals("ACCEPTED")){
+                    acceptedRequestDetails.setArguments(b);
+                    changeFragment(acceptedRequestDetails, "Ride Information");
+                }else{
+                    commonRequestFragment.setArguments(b);
+                    changeFragment(commonRequestFragment, "details");
+                }
+
+            }
+
+        } else {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+        }
+
+
+
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("action")) {
             String action = intent.getStringExtra("action");
@@ -154,6 +186,13 @@ public class HomeActivity extends ActivityManagePermission
             acceptedRequestFragment.setArguments(bundle);
             changeFragment(acceptedRequestFragment, "Requests");
         }
+
+
+
+
+
+
+
         Menu m = navigationView.getMenu();
         for (int i = 0; i < m.size(); i++) {
             MenuItem mi = m.getItem(i);
@@ -177,7 +216,6 @@ public class HomeActivity extends ActivityManagePermission
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(Color.WHITE);
         //  globatTitle = );
-
         getSupportActionBar().setTitle(getString(R.string.app_name));
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar,

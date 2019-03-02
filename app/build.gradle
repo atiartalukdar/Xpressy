@@ -22,8 +22,8 @@ android {
         applicationId "com.xpressy.rider"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 8
-        versionName "3.1.1"
+        versionCode 10
+        versionName "3.1.3"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.home_fragment.runner.AndroidJUnitRunner"
@@ -41,8 +41,17 @@ android {
         preDexLibraries = false
     }
     buildTypes {
+
+        debug {
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //       Keystore password  - 123456
+        }
+
         release {
-            minifyEnabled false
+            shrinkResources true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             //       Keystore password  - 123456
 
@@ -88,6 +97,8 @@ dependencies {
     //library for force update .
     implementation 'com.github.javiersantos:AppUpdater:2.7'
 
+    //library for loading animation -> used when user request new ride.
+    implementation 'com.roger.catloadinglibrary:catloadinglibrary:1.0.4'
 }
 
 apply plugin: 'com.google.gms.google-services'

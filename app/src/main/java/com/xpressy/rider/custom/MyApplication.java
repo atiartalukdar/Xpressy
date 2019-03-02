@@ -1,5 +1,6 @@
 package com.xpressy.rider.custom;
 
+import android.app.Application;
 import android.support.multidex.MultiDexApplication;
 
 import com.crashlytics.android.Crashlytics;
@@ -19,9 +20,8 @@ public class MyApplication extends MultiDexApplication {
         super.onCreate();
         Fabric.with(this, new Crashlytics());
         Mapbox.getInstance(getApplicationContext(), getString(R.string.mapboxkey));
-
-
     }
+
 
 
 }

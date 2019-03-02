@@ -44,6 +44,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
 
         showNotification(msg.getString("title"),msg.getString("msg"),intent);
+
+        Intent i = new Intent (this, HomeActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        i.putExtra("action", msg.getString("action"));
+        startActivity(i);
+
         /*
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, num *//* Request code *//*, intent,

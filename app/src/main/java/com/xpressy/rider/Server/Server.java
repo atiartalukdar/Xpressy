@@ -15,7 +15,7 @@ import com.paypal.android.sdk.payments.PayPalConfiguration;
 
 public class Server {
 
-    public static final String BASE_URL = "http://taxi.datasysbd.net/";            // Your admin panel URL
+    public static final String BASE_URL = "http://admin.xpressymobility.com/";            // Your admin panel URL
     public static final String ENVIRONMENT= PayPalConfiguration.ENVIRONMENT_SANDBOX;    //PayPalConfiguration.ENVIRONMENT_PRODUCTION     for production
     public static final String PAYPAL_KEY="AYi2W29-PSkOI0-utUCLVEuPL1qP8BjYCEOAz3OlnDomdc8yXl10QbGJVX3yc7QgZwM2AEgGn-3K-aoM";          //Paypal Account key
     public static final String MAPS_APIKEY_BROWSER="AIzaSyAlBu8MsC7jxJ68rpRR722Ojl_HQiWpnhQ";          //This quiz is required for place auto complete

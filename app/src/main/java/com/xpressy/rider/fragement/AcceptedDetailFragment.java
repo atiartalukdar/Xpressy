@@ -102,6 +102,7 @@ public class AcceptedDetailFragment extends FragmentManagePermission
     Context mContext;
     private View view;
     AppCompatButton trackRide;
+    Bundle bundle;
 
     private String mobile = "";
     AppCompatButton btn_cancel, btn_payment, btn_complete;
@@ -129,9 +130,29 @@ public class AcceptedDetailFragment extends FragmentManagePermission
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        btn_complete = (AppCompatButton) view.findViewById(R.id.btn_complete);
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh);
+        mobilenumber_row = (TableRow) view.findViewById(R.id.mobilenumber_row);
+        linearChat = (LinearLayout) view.findViewById(R.id.linear_chat);
+        title = (TextView) view.findViewById(R.id.title);
+        drivername = (TextView) view.findViewById(R.id.driver_name);
+        mobilenumber = (TextView) view.findViewById(R.id.txt_mobilenumber);
+        pickup_location = (TextView) view.findViewById(R.id.txt_pickuplocation);
+        drop_location = (TextView) view.findViewById(R.id.txt_droplocation);
+        fare = (TextView) view.findViewById(R.id.txt_basefare);
+        trackRide = (AppCompatButton) view.findViewById(R.id.btn_trackride);
+        btn_payment = (AppCompatButton) view.findViewById(R.id.btn_payment);
+        btn_cancel = (AppCompatButton) view.findViewById(R.id.btn_cancel);
+        payment_status = (TextView) view.findViewById(R.id.txt_paymentstatus);
+        pickup_location.setSelected(true);
+        drop_location.setSelected(true);
+
+
         mContext = container.getContext();
         view = inflater.inflate(R.layout.accepted_detail_fragmnet, container, false);
         ((HomeActivity) getActivity()).fontToTitleBar(getString(R.string.passenger_info));
+
+
         BindView();
         configPaypal();
 
@@ -200,22 +221,6 @@ public class AcceptedDetailFragment extends FragmentManagePermission
     }
 
     public void BindView() {
-        btn_complete = (AppCompatButton) view.findViewById(R.id.btn_complete);
-        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh);
-        mobilenumber_row = (TableRow) view.findViewById(R.id.mobilenumber_row);
-        linearChat = (LinearLayout) view.findViewById(R.id.linear_chat);
-        title = (TextView) view.findViewById(R.id.title);
-        drivername = (TextView) view.findViewById(R.id.driver_name);
-        mobilenumber = (TextView) view.findViewById(R.id.txt_mobilenumber);
-        pickup_location = (TextView) view.findViewById(R.id.txt_pickuplocation);
-        drop_location = (TextView) view.findViewById(R.id.txt_droplocation);
-        fare = (TextView) view.findViewById(R.id.txt_basefare);
-        trackRide = (AppCompatButton) view.findViewById(R.id.btn_trackride);
-        btn_payment = (AppCompatButton) view.findViewById(R.id.btn_payment);
-        btn_cancel = (AppCompatButton) view.findViewById(R.id.btn_cancel);
-        payment_status = (TextView) view.findViewById(R.id.txt_paymentstatus);
-        pickup_location.setSelected(true);
-        drop_location.setSelected(true);
 
         Bundle bundle = getArguments();
         if (bundle != null) {
@@ -409,6 +414,205 @@ public class AcceptedDetailFragment extends FragmentManagePermission
 
         btn_complete.setOnClickListener(
                 new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        AlertDialogCreate(getString(R.string.ride_request_cancellation), getString(R.string.want_to_accept), "COMPLETED");
+                    }
+                });
+    }
+
+    public void BindViewForAcceptedRequest() {
+
+        bundle = getArguments();
+        if (bundle != null) {
+            pojo = (PendingRequestPojo) bundle.getSerializable("data");
+
+            title.setText(getString(R.string.taxi));
+            pickup_location.setText(pojo.getPickup_adress() + " ");
+            drop_location.setText(pojo.getDrop_address());
+            drivername.setText(pojo.getDriver_name());
+            if (pojo.getFinal_amount() == null || pojo.getFinal_amount().equalsIgnoreCase("")) {
+                fare.setText(pojo.getAmount() + " " + SessionManager.getInstance().getUnit(getContext()));
+            } else {
+                fare.setText(pojo.getFinal_amount() + " " + SessionManager.getInstance().getUnit(getContext()));
+            }
+
+            mobilenumber.setText(pojo.getDriver_mobile());
+            mobile = pojo.getDriver_mobile();
+
+            mobilenumber_row.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    askCompactPermission(PermissionUtils.Manifest_CALL_PHONE, new PermissionResult() {
+                        @Override
+                        public void permissionGranted() {
+
+                            if (mobile != null && !mobile.equals("")) {
+                                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                                callIntent.setData(Uri.parse("tel:" + mobile));
+                                startActivity(callIntent);
+                            }
+                        }
+
+                        @Override
+                        public void permissionDenied() {
+
+                        }
+
+                        @Override
+                        public void permissionForeverDenied() {
+
+                        }
+                    });
+                }
+            });
+
+            if (pojo.getStatus().equalsIgnoreCase("PENDING")) {
+                btn_cancel.setVisibility(View.VISIBLE);
+            }
+            if (pojo.getStatus().equalsIgnoreCase("CANCELLED")) {
+                btn_complete.setVisibility(View.GONE);
+                btn_cancel.setVisibility(View.GONE);
+                btn_payment.setVisibility(View.GONE);
+                trackRide.setVisibility(View.GONE);
+                payment_status.setText(pojo.getPayment_status());
+            }
+            if (pojo.getStatus().equalsIgnoreCase("COMPLETED")) {
+                btn_payment.setVisibility(View.GONE);
+                trackRide.setVisibility(View.GONE);
+                btn_cancel.setVisibility(View.GONE);
+                btn_complete.setVisibility(View.GONE);
+                payment_status.setText(pojo.getPayment_status());
+            }
+            if (pojo.getStatus().equalsIgnoreCase("ACCEPTED")) {
+                trackRide.setVisibility(View.VISIBLE);
+                if (pojo.getPayment_status().equals("") && pojo.getPayment_mode().equals("")) {
+
+                    btn_cancel.setVisibility(View.VISIBLE);
+
+                    btn_payment.setVisibility(View.VISIBLE);
+                } else {
+                    btn_complete.setVisibility(View.VISIBLE);
+
+                    mobilenumber_row.setVisibility(View.VISIBLE);
+                }
+                if (!pojo.getPayment_status().equals("PAID") && pojo.getPayment_mode().equals("OFFLINE")) {
+                    btn_complete.setVisibility(View.GONE);
+                }
+            }
+
+            if (pojo.getPayment_status().equals("") && pojo.getPayment_mode().equals("")) {
+                payment_status.setText(getString(R.string.unpaid));
+
+            } else {
+                if (!pojo.getPayment_status().equals("PAID") && pojo.getPayment_mode().equals("OFFLINE")) {
+                    payment_status.setText(R.string.cash_on_hand);
+
+                } else {
+                    payment_status.setText(pojo.getPayment_status());
+                }
+
+            }
+
+        }
+
+        SetCustomFont setCustomFont = new SetCustomFont();
+        setCustomFont.overrideFonts(getActivity(), view);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+        isStarted();
+
+       /* linearChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle b = new Bundle();
+                b.putString("name", pojo.getDriver_name());
+                b.putString("id", pojo.getRide_id());
+                b.putString("user_id", pojo.getDriver_id());
+                ChatFragment chatFragment = new ChatFragment();
+                chatFragment.setArguments(b);
+                ((HomeActivity) getActivity()).changeFragment(chatFragment, "Messages");
+            }
+        });*/
+
+
+        btn_payment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (CheckConnection.haveNetworkConnection(getActivity())) {
+
+                    new AlertDialog.Builder(getActivity()).setTitle(getString(R.string.payment_method)).setItems(R.array.payment_mode, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (which == 0) {
+                                RequestParams params = new RequestParams();
+                                params.put("ride_id", pojo.getRide_id());
+                                params.put("payment_mode", "OFFLINE");
+                                Server.setContetntType();
+                                Server.setHeader(SessionManager.getInstance().getKEY(mContext));
+                                Server.post("api/user/rides", params, new JsonHttpResponseHandler() {
+                                    @Override
+                                    public void onStart() {
+                                        swipeRefreshLayout.setRefreshing(true);
+                                    }
+
+                                    @Override
+                                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                                        super.onSuccess(statusCode, headers, response);
+                                        pojo.setPayment_mode("OFFLINE");
+                                        if (pojo.getPayment_mode().equals("OFFLINE")) {
+                                            payment_status.setText(R.string.cash_on_hand);
+                                        } else {
+                                            payment_status.setText(pojo.getPayment_status());
+                                        }
+
+                                        btn_payment.setVisibility(View.GONE);
+                                        trackRide.setVisibility(View.VISIBLE);
+                                        Toast.makeText(getActivity(), getString(R.string.payment_update), Toast.LENGTH_LONG).show();
+                                    }
+
+                                    @Override
+                                    public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                                        super.onFailure(statusCode, headers, responseString, throwable);
+
+                                    }
+
+                                    @Override
+                                    public void onFinish() {
+                                        super.onFinish();
+                                        if (getActivity() != null) {
+                                            swipeRefreshLayout.setRefreshing(false);
+                                        }
+                                    }
+                                });
+
+                            } else {
+                                MakePayment();
+                            }
+                        }
+                    }).create().show();
+
+                    //MakePayment();
+                } else {
+                    Toast.makeText(getActivity(), getString(R.string.network), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialogCreate(getString(R.string.ride_request_cancellation),
+                        getString(R.string.want_to_cancel), "CANCELLED");
+            }
+        });
+
+        btn_complete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         AlertDialogCreate(getString(R.string.ride_request_cancellation), getString(R.string.want_to_accept), "COMPLETED");

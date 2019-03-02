@@ -395,7 +395,6 @@ public class MapView extends FragmentManagePermission implements OnMapReadyCallb
                 }
 
                 likelyPlaces.release();
-
             }
         });
     }

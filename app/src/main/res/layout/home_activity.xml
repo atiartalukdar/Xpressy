@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgtex"
     android:scrollbars="horizontal">
 
     <RelativeLayout
@@ -40,7 +39,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignTop="@+id/drawer_layout"
-                    android:background="@drawable/bgtex"
                     android:scrollbars="horizontal">
 
 

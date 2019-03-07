@@ -149,6 +149,7 @@ public class HomeActivity extends ActivityManagePermission
 
 
         sessionManager = new SessionManager(getApplicationContext());
+
         if (sessionManager.isLoggedIn(this)) {
             Intent intent = getIntent();
             if (intent != null && intent.hasExtra("action")) {

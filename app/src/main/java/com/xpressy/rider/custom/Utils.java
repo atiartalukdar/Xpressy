@@ -14,9 +14,10 @@ public class Utils {
     public static  final String country = "BD";
     public static  final String country_Code = "+8801";
 
-   /*public static  final String country = "KE";
+  /*
+   public static  final String country = "KE";
    public static  final String country_Code = "+254";
-*/
+   */
     /*****************************//* Strat shared preferences *//******************************/
     private static final String PREFS_NAME = "preferenceName";
 

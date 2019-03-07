@@ -291,7 +291,6 @@
                 </TableLayout>
 
                 <View
-
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#DDE4E8" />
@@ -364,4 +363,6 @@
         </RelativeLayout>
 
     </ScrollView>
+
+
 </android.support.v4.widget.SwipeRefreshLayout>

@@ -328,6 +328,7 @@ public class RequestFragment extends FragmentManagePermission implements OnMapRe
         params.put("pikup_location", pickup_location);
         params.put("drop_locatoin", drop_locatoin);
         params.put("amount", amount);
+        params.put("final_amount", amount);
         params.put("distance", distance);
         params.put("vehicle_type", pass.getVehicle_type());
         params.put("ride_type", pass.getService_type());

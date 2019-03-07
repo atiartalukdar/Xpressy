@@ -54,12 +54,16 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.xpressy.rider.R;
 import com.xpressy.rider.Server.Server;
 import com.xpressy.rider.acitivities.HomeActivity;
 import com.xpressy.rider.custom.CheckConnection;
 import com.xpressy.rider.custom.GPSTracker;
 import com.xpressy.rider.custom.SetCustomFont;
+import com.xpressy.rider.custom.Utils;
 import com.xpressy.rider.pojo.PendingRequestPojo;
 import com.xpressy.rider.pojo.Tracking;
 import com.xpressy.rider.session.SessionManager;
@@ -84,6 +88,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.HashMap;
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
@@ -99,10 +104,16 @@ import cz.msebera.android.httpclient.Header;
 public class AcceptedDetailFragment extends FragmentManagePermission
         implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener {
+    double finalAmount = 0.0;
+
+
     Context mContext;
     private View view;
     AppCompatButton trackRide;
     Bundle bundle;
+    SessionManager sessionManager;
+    String userid = "";
+    String key = "";
 
     private String mobile = "";
     AppCompatButton btn_cancel, btn_payment, btn_complete;
@@ -130,6 +141,11 @@ public class AcceptedDetailFragment extends FragmentManagePermission
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        mContext = container.getContext();
+        view = inflater.inflate(R.layout.accepted_detail_fragmnet, container, false);
+        ((HomeActivity) getActivity()).fontToTitleBar(getString(R.string.passenger_info));
+
+
         btn_complete = (AppCompatButton) view.findViewById(R.id.btn_complete);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh);
         mobilenumber_row = (TableRow) view.findViewById(R.id.mobilenumber_row);
@@ -146,19 +162,56 @@ public class AcceptedDetailFragment extends FragmentManagePermission
         payment_status = (TextView) view.findViewById(R.id.txt_paymentstatus);
         pickup_location.setSelected(true);
         drop_location.setSelected(true);
+        sessionManager = new SessionManager(getActivity());
 
 
-        mContext = container.getContext();
-        view = inflater.inflate(R.layout.accepted_detail_fragmnet, container, false);
-        ((HomeActivity) getActivity()).fontToTitleBar(getString(R.string.passenger_info));
+
+        try{
+            Bundle bundle = getArguments();
+            if (bundle.getString("status") != null && bundle.getString("status").equals("ACCEPTED")){
+                Log.e("Atiar - ", "AcceptedDetailsFragment = "+"Accepted Called");
+                sessionManager = new SessionManager(getActivity());
+                if (sessionManager != null) {
+                    HashMap<String, String> users = sessionManager.getUserDetails();
+                    if (users != null) {
+                        String id = users.get(SessionManager.USER_ID);
+                        if (id != null) {
+                            userid = id;
+                        }
+                        String k = sessionManager.getKEY(mContext);
+                        if (k != null) {
+                            key = k;
+                        }
+
+                    }
+                }
 
 
+                if (!CheckConnection.haveNetworkConnection(getActivity())) {
+                    getAcceptedRequest(userid,  bundle.getString("status"), key);
+                }
+
+            }else {
+                Log.e("Atiar - ", "AcceptedDetailsFragment = "+"BindView Called");
+                BindView();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
+/*
         BindView();
+*/
         configPaypal();
+
+
 
         if (!CheckConnection.haveNetworkConnection(getActivity())) {
             Toast.makeText(getActivity(), getString(R.string.network), Toast.LENGTH_LONG).show();
         }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             askCompactPermissions(permissionAsk, new PermissionResult() {
                 @Override
@@ -225,7 +278,6 @@ public class AcceptedDetailFragment extends FragmentManagePermission
         Bundle bundle = getArguments();
         if (bundle != null) {
             pojo = (PendingRequestPojo) bundle.getSerializable("data");
-
             title.setText(getString(R.string.taxi));
             pickup_location.setText(pojo.getPickup_adress() + " ");
             drop_location.setText(pojo.getDrop_address());
@@ -348,9 +400,11 @@ public class AcceptedDetailFragment extends FragmentManagePermission
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             if (which == 0) {
+
                                 RequestParams params = new RequestParams();
                                 params.put("ride_id", pojo.getRide_id());
                                 params.put("payment_mode", "OFFLINE");
+                                //params.put("final_amount",getFinalAmount());
                                 Server.setContetntType();
                                 Server.setHeader(SessionManager.getInstance().getKEY(mContext));
                                 Server.post("api/user/rides", params, new JsonHttpResponseHandler() {
@@ -372,6 +426,7 @@ public class AcceptedDetailFragment extends FragmentManagePermission
                                         btn_payment.setVisibility(View.GONE);
                                         trackRide.setVisibility(View.VISIBLE);
                                         Toast.makeText(getActivity(), getString(R.string.payment_update), Toast.LENGTH_LONG).show();
+                                        makeOfflinPayment("COMPLETED");
                                     }
 
                                     @Override
@@ -526,19 +581,6 @@ public class AcceptedDetailFragment extends FragmentManagePermission
         });
         isStarted();
 
-       /* linearChat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle b = new Bundle();
-                b.putString("name", pojo.getDriver_name());
-                b.putString("id", pojo.getRide_id());
-                b.putString("user_id", pojo.getDriver_id());
-                ChatFragment chatFragment = new ChatFragment();
-                chatFragment.setArguments(b);
-                ((HomeActivity) getActivity()).changeFragment(chatFragment, "Messages");
-            }
-        });*/
-
 
         btn_payment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -571,8 +613,11 @@ public class AcceptedDetailFragment extends FragmentManagePermission
                                         }
 
                                         btn_payment.setVisibility(View.GONE);
-                                        trackRide.setVisibility(View.VISIBLE);
+                                        trackRide.setVisibility(View.GONE);
+                                        btn_cancel.setVisibility(View.GONE);
                                         Toast.makeText(getActivity(), getString(R.string.payment_update), Toast.LENGTH_LONG).show();
+                                        makeOfflinPayment("COMPLETED");
+
                                     }
 
                                     @Override
@@ -692,7 +737,6 @@ public class AcceptedDetailFragment extends FragmentManagePermission
 
         } else {
             finalPrice_popup.setText(final_fare);
-
         }
 
         happyIcon_Popup.setOnClickListener(new View.OnClickListener() {
@@ -803,6 +847,7 @@ public class AcceptedDetailFragment extends FragmentManagePermission
 
                         if (status.equalsIgnoreCase("COMPLETED")) {
                             Double finalfare = (double) 0;
+                            Double finalDistance = (double) 0;
                             if (SessionManager.getInstance().getBASE_COST(getContext()) != null &&
                                     !SessionManager.getInstance().getBASE_COST(getContext())
                                             .equalsIgnoreCase("")
@@ -812,16 +857,24 @@ public class AcceptedDetailFragment extends FragmentManagePermission
                                 Double aDouble = distance(currentLatitude, currentLongitude
                                         , getLocationFromAddress(pojo.getPickup_adress()).latitude
                                         , getLocationFromAddress(pojo.getPickup_adress()).longitude);
+
+                                finalDistance = aDouble;
+                                Log.e("Atiar - ", "From Discatnce calculator - Distance = " + aDouble);
+
                                 int reminderValue = (int) ((Integer.parseInt(
                                         SessionManager.getInstance().getBASE_COST(getContext()))
                                         + ((aDouble - 2) *
                                         Integer.parseInt(SessionManager.getInstance().getCOST(getContext()))))
                                         % 10);
+                                Log.e("Atiar - ", "From Discatnce calculator -  reminderValue = " + aDouble);
 
                                 finalfare = Integer.parseInt(
                                         SessionManager.getInstance().getBASE_COST(getContext()))
                                         + ((aDouble - 2) *
                                         Integer.parseInt(SessionManager.getInstance().getCOST(getContext())));
+
+                                Log.e("Atiar - ", "From Discatnce calculator -  Final fare = " + aDouble);
+
 
                                 if (reminderValue >= 1 && reminderValue <= 4) {
                                     finalfare = finalfare - reminderValue;
@@ -829,8 +882,11 @@ public class AcceptedDetailFragment extends FragmentManagePermission
                                     finalfare = finalfare + (10 - reminderValue);
                                 }
 
+                                if (finalfare <= Double.parseDouble(SessionManager.getInstance().getBASE_COST(getContext()))){
+                                    finalfare = Double.parseDouble(SessionManager.getInstance().getBASE_COST(getContext()));
+                                }
                             }
-
+                            updateFinalFareToServer(finalDistance+"", finalfare+"");
                             satisfied_popupDialogue(status, String.valueOf(finalfare).split("\\.")[0]);
 
                         } else {
@@ -854,6 +910,59 @@ public class AcceptedDetailFragment extends FragmentManagePermission
                     }
                 }).show();
     }
+
+    public void makeOfflinPayment(final String status) {
+        if (status.equalsIgnoreCase("COMPLETED")) {
+            Double finalfare = (double) 0;
+            Double finalDistance = (double) 0;
+            if (SessionManager.getInstance().getBASE_COST(getContext()) != null &&
+                    !SessionManager.getInstance().getBASE_COST(getContext())
+                            .equalsIgnoreCase("")
+                    && SessionManager.getInstance().getCOST(getContext()) != null &&
+                    !SessionManager.getInstance().getCOST(getContext())
+                            .equalsIgnoreCase("")) {
+                Double aDouble = distance(currentLatitude, currentLongitude
+                        , getLocationFromAddress(pojo.getPickup_adress()).latitude
+                        , getLocationFromAddress(pojo.getPickup_adress()).longitude);
+
+                finalDistance = aDouble;
+                Log.e("Atiar - ", "From Discatnce calculator - Distance = " + aDouble);
+
+                int reminderValue = (int) ((Integer.parseInt(
+                        SessionManager.getInstance().getBASE_COST(getContext()))
+                        + ((aDouble - 2) *
+                        Integer.parseInt(SessionManager.getInstance().getCOST(getContext()))))
+                        % 10);
+                Log.e("Atiar - ", "From Discatnce calculator -  reminderValue = " + aDouble);
+
+                finalfare = Integer.parseInt(
+                        SessionManager.getInstance().getBASE_COST(getContext()))
+                        + ((aDouble - 2) *
+                        Integer.parseInt(SessionManager.getInstance().getCOST(getContext())));
+
+                Log.e("Atiar - ", "From Discatnce calculator -  Final fare = " + aDouble);
+
+
+                if (reminderValue >= 1 && reminderValue <= 4) {
+                    finalfare = finalfare - reminderValue;
+                } else if (reminderValue >= 5 && reminderValue <= 9) {
+                    finalfare = finalfare + (10 - reminderValue);
+                }
+
+                if (finalfare <= Double.parseDouble(SessionManager.getInstance().getBASE_COST(getContext()))){
+                    finalfare = Double.parseDouble(SessionManager.getInstance().getBASE_COST(getContext()));
+                }
+            }
+            updateFinalFareToServer(finalDistance+"", finalfare+"");
+            satisfied_popupDialogue(status, String.valueOf(finalfare).split("\\.")[0]);
+
+        } else {
+            sendStatus(pojo.getRide_id(), status, JSONObject.NULL.toString()
+                    , JSONObject.NULL.toString(), pojo.getAmount());
+
+        }
+    }
+
 
     public void cancelAlert(String title, String message, final String status) {
 
@@ -1362,6 +1471,10 @@ public class AcceptedDetailFragment extends FragmentManagePermission
     }
 
     private double distance(double lat1, double lon1, double lat2, double lon2) {
+
+        Log.e("Atiar - ", "Pickup Location - " + lat1 + " + "+lon1);
+        Log.e("Atiar - ", "Dropout Location - " + lat2 + " + "+lon2);
+
         double theta = lon1 - lon2;
         double dist = Math.sin(deg2rad(lat1))
                 * Math.sin(deg2rad(lat2))
@@ -1405,7 +1518,7 @@ public class AcceptedDetailFragment extends FragmentManagePermission
                 super.onSuccess(statusCode, headers, response);
 
 
-                Log.e("test", "onSuccess:11 " + response.toString());
+                Log.e("Atiar - nearBy= ", "nearBy onSuccess:" + response.toString());
                 try {
                     if (response.has("status") && response.getString("status").equalsIgnoreCase("success")) {
 
@@ -1414,6 +1527,7 @@ public class AcceptedDetailFragment extends FragmentManagePermission
                                 SessionManager.getInstance().setCost(getContext(),
                                         response.getJSONObject("fair")
                                                 .getString("motorbike_ride_fare"));
+
                                 SessionManager.getInstance().setBaseCost(getContext(),
                                         response.getJSONObject("fair")
                                                 .getString("motorbike_ride_base_fare"));
@@ -1479,4 +1593,144 @@ public class AcceptedDetailFragment extends FragmentManagePermission
         });
     }
 
+
+
+    public void getAcceptedRequest(String id, String status, String key) {
+
+        //created by atiar for automatically open when driver accept ride request.
+
+        RequestParams params = new RequestParams();
+        params.put("id", id);
+        params.put("status", status);
+        params.put("utype", "1");
+        Server.setHeader(key);
+        Server.get("api/user/rides/format/json", params, new JsonHttpResponseHandler() {
+            @Override
+            public void onStart() {
+                super.onStart();
+                swipeRefreshLayout.setRefreshing(true);
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+                try {
+                    Gson gson = new GsonBuilder().create();
+
+                    if (response.has("status") && response.getString("status").equalsIgnoreCase("success")) {
+                        List<PendingRequestPojo> list = gson.fromJson(response.getJSONArray("data").toString(), new TypeToken<List<PendingRequestPojo>>() {
+                        }.getType());
+                        if (list.size() == 0) {
+                            // txt_error.setVisibility(View.VISIBLE);
+                        } else {
+
+                            final PendingRequestPojo pojo = list.get(0);
+                            if (status.equals("PENDING")){
+                                bundle = new Bundle();
+                                bundle.putSerializable("data", pojo);
+                                BindViewForAcceptedRequest();
+                            }
+                        }
+
+                    } else {
+
+                        Toast.makeText(getActivity(), getString(R.string.error_occurred), Toast.LENGTH_LONG).show();
+
+                    }
+                } catch (JSONException e) {
+
+                    Toast.makeText(getActivity(), getString(R.string.error_occurred), Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFinish() {
+                super.onFinish();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+    }
+
+    private void updateFinalFareToServer(String finalDistance, String finalAmount){
+        RequestParams params = new RequestParams();
+        params.put("ride_id", pojo.getRide_id());
+        params.put("payment_mode", "OFFLINE");
+        params.put("final_amount",finalAmount);
+        params.put("final_distance",finalDistance);
+        Server.setContetntType();
+        Server.setHeader(SessionManager.getInstance().getKEY(mContext));
+        Server.post("api/user/rides", params, new JsonHttpResponseHandler() {
+            @Override
+            public void onStart() {
+                swipeRefreshLayout.setRefreshing(true);
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+                pojo.setPayment_mode("OFFLINE");
+                pojo.setFinal_amount(finalAmount);
+                try {
+                    Log.e("Atiar - ", "Final amount updated server "+response.getString("final_amount"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                super.onFailure(statusCode, headers, responseString, throwable);
+
+            }
+
+            @Override
+            public void onFinish() {
+                super.onFinish();
+                if (getActivity() != null) {
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+            }
+        });
+    }
+
+    private double getFinalAmount (){
+
+        Double finalfare = (double) 0;
+        if (SessionManager.getInstance().getBASE_COST(getContext()) != null &&
+                !SessionManager.getInstance().getBASE_COST(getContext())
+                        .equalsIgnoreCase("")
+                && SessionManager.getInstance().getCOST(getContext()) != null &&
+                !SessionManager.getInstance().getCOST(getContext())
+                        .equalsIgnoreCase("")) {
+            Double aDouble = distance(currentLatitude, currentLongitude
+                    , getLocationFromAddress(pojo.getPickup_adress()).latitude
+                    , getLocationFromAddress(pojo.getPickup_adress()).longitude);
+
+            Log.e("Atiar - ", "From Discatnce calculator - Distance = " + aDouble);
+
+            int reminderValue = (int) ((Integer.parseInt(
+                    SessionManager.getInstance().getBASE_COST(getContext()))
+                    + ((aDouble - 2) *
+                    Integer.parseInt(SessionManager.getInstance().getCOST(getContext()))))
+                    % 10);
+            Log.e("Atiar - ", "From Discatnce calculator -  reminderValue = " + aDouble);
+
+            finalfare = Integer.parseInt(
+                    SessionManager.getInstance().getBASE_COST(getContext()))
+                    + ((aDouble - 2) *
+                    Integer.parseInt(SessionManager.getInstance().getCOST(getContext())));
+
+            Log.e("Atiar - ", "From Discatnce calculator -  Final fare = " + aDouble);
+
+
+            if (reminderValue >= 1 && reminderValue <= 4) {
+                finalfare = finalfare - reminderValue;
+            } else if (reminderValue >= 5 && reminderValue <= 9) {
+                finalfare = finalfare + (10 - reminderValue);
+            }
+
+        }
+
+        return finalfare;
+    }
 }

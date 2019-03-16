@@ -119,7 +119,7 @@ public class RequestFragment extends FragmentManagePermission implements OnMapRe
                     Toast.makeText(getActivity(), networkAvailable, Toast.LENGTH_LONG).show();
                 } else {
                     if (distance == null) {
-                        Toast.makeText(getActivity(), getString(R.string.invalid_distance), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), getString(R.string.null_distance), Toast.LENGTH_LONG).show();
                     } else if (pickup_address == null) {
                         Toast.makeText(getActivity(), getString(R.string.invalid_pickupaddress), Toast.LENGTH_SHORT).show();
                     } else if (drop_address == null) {
@@ -254,6 +254,8 @@ public class RequestFragment extends FragmentManagePermission implements OnMapRe
     public void onDirectionSuccess(Direction direction, String rawBody) {
         if (getActivity() != null) {
             if (direction.isOK()) {
+                Log.e(TAG,"Direction success"+ direction.getStatus());
+
                 ArrayList<LatLng> directionPositionList = direction.getRouteList().get(0).getLegList().get(0).getDirectionPoint();
                 myMap.addPolyline(DirectionConverter.createPolyline(getActivity(), directionPositionList, 5, Color.RED));
                 myMap.addMarker(new MarkerOptions().position(new LatLng(origin.latitude, origin.longitude)).title("Pickup Location").snippet(pickup_address).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
@@ -264,9 +266,20 @@ public class RequestFragment extends FragmentManagePermission implements OnMapRe
                         .getLegList().get(0).getDistance().getValue()) / 1000);
 
             } else {
-                distanceAlert(direction.getErrorMessage());
-                //calculateFare.setVisibility(View.GONE);
-                dismiss();
+                Log.e(TAG,"Direction error"+ direction.getErrorMessage());
+
+                ArrayList<LatLng> directionPositionList = direction.getRouteList().get(0).getLegList().get(0).getDirectionPoint();
+                myMap.addPolyline(DirectionConverter.createPolyline(getActivity(), directionPositionList, 5, Color.RED));
+                myMap.addMarker(new MarkerOptions().position(new LatLng(origin.latitude, origin.longitude)).title("Pickup Location").snippet(pickup_address).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+                myMap.addMarker(new MarkerOptions().position(new LatLng(destination.latitude, destination.longitude)).title("Drop Location").snippet(drop_address).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                myMap.animateCamera(CameraUpdateFactory.newLatLngZoom(origin, 10));
+
+                calculateDistance(Double.valueOf(direction.getRouteList().get(0)
+                        .getLegList().get(0).getDistance().getValue()) / 1000);
+                /*distanceAlert(direction.getErrorMessage());
+                calculateFare.setVisibility(View.GONE);*/
+
+                //dismiss();
             }
 
 
@@ -291,9 +304,9 @@ public class RequestFragment extends FragmentManagePermission implements OnMapRe
     public void requestDirection() {
         Log.e(TAG,"requestDirection function called");
 
-        snackbar = Snackbar.make(view, getString(R.string.fare_calculating), 500);
+        snackbar = Snackbar.make(view, getString(R.string.fare_calculating), 1000);
         snackbar.show();
-        GoogleDirection.withServerKey(getString(R.string.google_api_key))
+        GoogleDirection.withServerKey("AIzaSyAl_NO1hTfMx08zljGzB8uZawWbdnDpfkk")
                 .from(origin)
                 .to(destination)
                 .transportMode(TransportMode.DRIVING)
@@ -387,7 +400,10 @@ public class RequestFragment extends FragmentManagePermission implements OnMapRe
     }
 
     public void calculateDistance(Double aDouble) {
+
         distance = String.valueOf(aDouble);
+        Log.e(TAG,"calculateDistance function called = " + distance);
+
         if (aDouble != null) {
             if (fare != null && fare != 0.0) {
 

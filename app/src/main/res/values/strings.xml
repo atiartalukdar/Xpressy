@@ -64,7 +64,7 @@
     <string name="select_driver">tap driver info</string>
     <string name="invalid_fare">invalid fare</string>
     <string name="allow_permission">Allow Permission</string>
-    <string name="invalid_distance">invalid distance</string>
+    <string name="invalid_distance">No Driver Available Now</string>
     <string name="invalid_pickupaddress">invalid pickup address</string>
     <string name="invalid_dropaddress">invalid drop address</string>
     <string name="invalid_pickuplocation">invalid pickup location</string>
@@ -103,7 +103,8 @@
     <string name="register_hint">Registered Email</string>
     <string name="reset_password">Reset password</string>
     <string name="new_pwd">new password</string>
-    <string name="INVALID_DISTANCE">INVALID DISTANCE</string>
+    <string name="INVALID_DISTANCE">Distance is too High</string>
+    <string name="null_distance">Distance is too short</string>
     <string name="make_payment">Make Payment</string>
     <string name="taxigo">Xpressy</string>
     <string name="date">DATE</string>
